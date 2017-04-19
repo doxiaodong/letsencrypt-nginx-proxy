@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  jenkins:
+    restart: always
+    image: jenkins:latest
+    container_name: jenkins
+    ports:
+      - "50000:50000"
+    volumes:
+      - "/var/docker/jenkins_home:/var/jenkins_home"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    environment:
+      - JAVA_OPTS=-Duser.timezone=Asia/Shanghai
+      - VIRTUAL_HOST=jenkins.darlin.me
+      - VIRTUAL_PORT=8080
+      - VIRTUAL_NETWORK=nginx-proxy
+      - LETSENCRYPT_HOST=jenkins.darlin.me
+      - LETSENCRYPT_EMAIL=duxiaodong@darlin.me
+    networks:
+      - proxy-tier
+
+networks:
+  proxy-tier:
+    external:
+      name: nginx-proxy
