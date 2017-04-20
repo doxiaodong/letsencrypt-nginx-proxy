@@ -147,7 +147,7 @@ server {
 
     location / {
         {{ if (hasSuffix "tristana.cc" (trim $host)) }}
-        proxy_pass {{ trim $proto }}://{{ trim $host }}/{{ trim $host }}/;
+        proxy_pass {{ trim $proto }}://{{ trim $host }}/{{ trim $host }};
         {{ else }}
         proxy_pass {{ trim $proto }}://{{ trim $host }};
         {{ end }}
