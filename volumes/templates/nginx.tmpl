@@ -146,7 +146,7 @@ server {
     {{ end }}
 
     location / {
-        {{ if (hasSuffix "teemo.top" (trim $host)) }}
+        {{ if (hasSuffix "gnar.top" (trim $host)) }}
         proxy_pass {{ trim $proto }}://{{ trim $host }}/{{ trim $host }};
         {{ else }}
         proxy_pass {{ trim $proto }}://{{ trim $host }};
