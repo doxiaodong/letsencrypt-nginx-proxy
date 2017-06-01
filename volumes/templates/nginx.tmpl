@@ -1,4 +1,3 @@
-
 {{ define "upstream" }}
     {{ if .Address }}
         {{/* If we got the containers from swarm and this container's port is published to host, use host IP:PORT */}}
@@ -30,6 +29,7 @@ map $http_upgrade $proxy_connection {
   '' close;
 }
 
+gzip on;
 gzip_types text/plain text/css application/javascript application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
 
 log_format vhost '$host $remote_addr - $remote_user [$time_local] '
@@ -50,6 +50,8 @@ proxy_set_header Connection $proxy_connection;
 proxy_set_header X-Real-IP $remote_addr;
 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 proxy_set_header X-Forwarded-Proto $proxy_x_forwarded_proto;
+proxy_set_header X-Forwarded-Ssl $proxy_x_forwarded_ssl;
+proxy_set_header X-Forwarded-Port $proxy_x_forwarded_port;
 {{ end }}
 
 {{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}
