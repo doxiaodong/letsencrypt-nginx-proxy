@@ -13,8 +13,6 @@ services:
     environment:
       - JAVA_OPTS=-Duser.timezone=Asia/Shanghai
       - VIRTUAL_HOST=jenkins.darlin.me
-      - VIRTUAL_PORT=8080
-      - VIRTUAL_NETWORK=nginx-proxy
       - LETSENCRYPT_HOST=jenkins.darlin.me
       - LETSENCRYPT_EMAIL=duxiaodong@darlin.me
     networks:
