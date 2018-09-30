@@ -1,15 +1,15 @@
-version: "3"
+version: '3'
 
 services:
   nginx-web:
     restart: always
     image: nginx:latest
     labels:
-        com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: 'true'
     container_name: nginx-web
     ports:
-      - "80:80"
-      - "443:443"
+      - '80:80'
+      - '443:443'
     volumes:
       - /var/docker/nginx/conf.d:/etc/nginx/conf.d
       - /var/docker/nginx/vhost.d:/etc/nginx/vhost.d
